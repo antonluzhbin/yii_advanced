@@ -95,8 +95,12 @@ echo GridView::widget([
             'header' => 'Уронить',
             'headerOptions' => ['width' => '60'],
             'content' => function ($data) {
-                $icon = Html::tag('span', '', ['class' => "glyphicon glyphicon-arrow-down"]);
-                return Html::a($icon, Url::to(['site/down', 'id' => $data->id]), ['data-method' => 'POST']);
+                if ($data->state == AppleNew::STATE_ON_TREE) {
+                    $icon = Html::tag('span', '', ['class' => "glyphicon glyphicon-arrow-down"]);
+                    return Html::a($icon, Url::to(['site/down', 'id' => $data->id]), ['data-method' => 'POST']);
+                } else {
+                    return '';
+                }
             }
         ],
     ],
