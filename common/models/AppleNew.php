@@ -100,7 +100,7 @@ class AppleNew extends ActiveRecord
     public function is_rotten()
     {
         // После лежания 5 часов - портится
-        if ($this->date_fall > 0 && $this->state == self::STATE_FALL && ($this->date_fall - $this->date_appearance) > 5 * 60 * 60) {
+        if ($this->date_fall > 0 && $this->state == self::STATE_FALL && (time() - $this->date_fall) > 5 * 60 * 60) {
             $this->state = self::STATE_ROTTEN;
             $this->save();
         }
